@@ -77,25 +77,18 @@ public class DBHelper extends SQLiteOpenHelper {
 	public ArrayList<String> getNoteContent() {
 		//TODO return records in Strings
 
-		// Create an ArrayList that holds String objects
 		ArrayList<String> notes = new ArrayList<String>();
-		// Select all the notes' content
 		String selectQuery = "";
 
-		// Get the instance of database to read
 		SQLiteDatabase db = this.getReadableDatabase();
-		// Run the SQL query and get back the Cursor object
 		Cursor cursor = db.rawQuery(selectQuery, null);
-		// moveToFirst() moves to first row
 		if (cursor.moveToFirst()) {
-			// Loop while moveToNext() points to next row and returns true;
-			// moveToNext() returns false when no more next row to move to
 			do {
 
 				notes.add(cursor.getString(0));
 			} while (cursor.moveToNext());
 		}
-		// Close connection
+
 		cursor.close();
 		db.close();
 

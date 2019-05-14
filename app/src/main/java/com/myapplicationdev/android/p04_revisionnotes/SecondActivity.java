@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class SecondActivity extends AppCompatActivity {
 
-	ListView listv;
+	ListView lv;
 	ArrayAdapter aa;
 	ArrayList<Note> note;
 
@@ -17,13 +17,16 @@ public class SecondActivity extends AppCompatActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_second);
-		//TODO implement the Custom ListView
-		listv = findViewById(R.id.lv);
-		note = new ArrayList<Note>();
-		aa = new RevisionNotesArrayAdapter(this, R.layout.row, note);
+
+		lv = findViewById(R.id.lv);
 		DBHelper db = new DBHelper(SecondActivity.this);
+
+		note = new ArrayList<Note>();
 		ArrayList<Note> data = db.getAllNotes();
+
+		aa = new RevisionNotesArrayAdapter(this, R.layout.row, note);
 		aa = new RevisionNotesArrayAdapter(this,R.layout.row,data);
-		listv.setAdapter(aa);
+
+		lv.setAdapter(aa);
 	}
 }
